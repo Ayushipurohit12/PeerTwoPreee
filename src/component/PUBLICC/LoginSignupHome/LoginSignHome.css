@@ -1,0 +1,341 @@
+/* ======================================================
+   MAIN SECTION
+====================================================== */
+
+.whyLenden-section {
+  width: 100%;
+  background: white;
+  overflow: hidden;
+  padding-top: 40px;
+}
+
+/* ======================================================
+   STATS BAR
+====================================================== */
+
+.whyLenden-statsBar {
+  width: 100%;
+  background: #06112b;
+  padding: 10px 0;
+}
+
+.whyLenden-statsContainer {
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
+
+  padding: 0 100px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 40px;
+}
+.whyLenden-statItem{
+  text-align:center;
+}
+
+.whyLenden-statItem h2 {
+  color: #59b8ff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 12px;
+  /* margin-left: 60px; */
+}
+
+.whyLenden-statItem p {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 400;
+  /* margin-left: 60px; */
+}
+
+.whyLenden-divider {
+  width: 1px;
+  height: 60px;
+  background: rgba(255,255,255,0.3);
+}
+
+.whyLenden-badge img {
+  width: 100px;
+  object-fit: contain;
+}
+
+/* ======================================================
+   CONTENT
+====================================================== */
+
+.whyLenden-container {
+  width: 100%;
+  max-width: 1450px;
+
+  margin: auto;
+
+  padding: 100px 80px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /* gap: 70px; */
+}
+
+/* ======================================================
+   LEFT IMAGE
+====================================================== */
+
+.whyLenden-left {
+  flex: 1;
+}
+
+/* .whyLenden-imageCard {
+  width: 100%;
+  max-width: 560px;
+  height: 470px;
+
+  background: #edf4f7;
+
+  border-radius: 30px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  overflow: hidden;
+} */
+
+.whyLenden-image {
+  width: 82%;
+  object-fit: contain;
+}
+
+/* ======================================================
+   RIGHT CONTENT
+====================================================== */
+
+.whyLenden-right {
+  flex: 1;
+  max-width: 700px;
+}
+
+.whyLenden-right h2 {
+  font-size: 35px;
+  line-height: 1.1;
+  color: #111827;
+  font-weight: 600;
+
+  margin-bottom: 28px;
+}
+
+.whyLenden-right p {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #1f2937;
+}
+/* ======================================================
+   LAPTOP
+====================================================== */
+
+@media (max-width: 1200px) {
+
+  .whyLenden-statsContainer{
+    padding:0 40px;
+    gap:25px;
+  }
+
+  .whyLenden-statItem h2{
+    font-size:22px;
+    margin-left:0;
+  }
+
+  .whyLenden-statItem p{
+    font-size:13px;
+    margin-left:0;
+  }
+
+  .whyLenden-badge img{
+    width:90px;
+  }
+}
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media (max-width: 992px) {
+
+  /* ---------- TOP STATS ---------- */
+
+  .whyLenden-statsContainer{
+    padding: 0 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  .whyLenden-divider{
+    display: none;
+  }
+
+  .whyLenden-statItem{
+    text-align: center;
+  }
+
+  .whyLenden-statItem h2,
+  .whyLenden-statItem p{
+    margin-left: 0;
+  }
+
+  .whyLenden-badge img{
+    width: 90px;
+  }
+
+  /* ---------- MAIN CONTENT ---------- */
+
+  .whyLenden-container{
+    flex-direction: column;
+    text-align: center;
+    padding: 70px 30px;
+    gap: 50px;
+  }
+
+  .whyLenden-left,
+  .whyLenden-right{
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .whyLenden-image{
+    width: 70%;
+    margin: auto;
+    display: block;
+  }
+
+  .whyLenden-right{
+    max-width: 100%;
+  }
+
+  .whyLenden-right h2{
+    font-size: 38px;
+    margin-bottom: 20px;
+  }
+
+  .whyLenden-right p{
+    font-size: 16px;
+    line-height: 1.8;
+  }
+}
+
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 768px) {
+
+  /* ---------- TOP STATS ---------- */
+
+  .whyLenden-statsBar{
+    padding: 25px 0;
+  }
+
+  .whyLenden-statsContainer{
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 25px;
+  }
+
+  .whyLenden-statItem{
+    text-align: center;
+  }
+
+  .whyLenden-statItem h2{
+    margin-left: 0;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .whyLenden-statItem p{
+    margin-left: 0;
+    font-size: 13px;
+  }
+
+  .whyLenden-badge{
+    grid-column: span 2;
+    text-align: center;
+  }
+
+  .whyLenden-badge img{
+    width: 75px;
+  }
+
+  /* ---------- MAIN CONTENT ---------- */
+
+  .whyLenden-container{
+    padding: 50px 20px;
+    gap: 35px;
+  }
+
+  .whyLenden-image{
+    width: 85%;
+  }
+
+  .whyLenden-right h2{
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .whyLenden-right p{
+    font-size: 15px;
+    line-height: 1.8;
+  }
+}
+
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
+
+@media (max-width: 480px) {
+
+  /* ---------- TOP STATS ---------- */
+
+  .whyLenden-statsContainer{
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .whyLenden-badge{
+    grid-column: auto;
+  }
+
+  .whyLenden-statItem h2{
+    font-size: 22px;
+  }
+
+  .whyLenden-statItem p{
+    font-size: 12px;
+  }
+
+  /* ---------- MAIN CONTENT ---------- */
+
+  .whyLenden-container{
+    padding: 40px 16px;
+  }
+
+  .whyLenden-image{
+    width: 100%;
+  }
+
+  .whyLenden-right h2{
+    font-size: 26px;
+  }
+
+  .whyLenden-right p{
+    font-size: 14px;
+    line-height: 1.8;
+  }
+}

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+
+/* ── CSS VARIABLES ───────────────────────────────────────────── */
+
+:root {
+
+  
+  /* ── PRIMARY BRAND BLUE (buttons, navbar signup, footer bg) */
+  --color-primary: #1f5f99;
+  --color-primary-dark: #174e84;
+  --color-primary-darker: #184c7a;
+
+  /* ── ACCENT / CTA BLUE (hero buttons, links, hover lines) */
+  --color-accent: #1a87d8;
+  --color-accent-light: #08a7e8;
+  --color-accent-gradient-start: #07a8ea;
+  --color-accent-gradient-end: #0277bc;
+
+  /* ── SECTION / CTA BG (download CTA section) */
+  --color-cta-bg: #1290c8;
+
+  /* ── BACKGROUND COLORS */
+  --color-bg-white: #ffffff;
+  --color-bg-light: #f7f7f7;
+  --color-bg-light-blue: #e5f3f9;
+
+  /* ── TEXT COLORS */
+  --color-text-dark: #111827;
+  --color-text-body: #222222;
+  --color-text-muted: #555555;
+  --color-text-blue: #48679c;
+  --color-text-white: #ffffff;
+
+  /* ── BORDER / MISC */
+  --color-border: #d8e2ec;
+  --color-border-light: #f3f3f3;
+
+  /* ── GREEN (stats icons, check marks) */
+  --color-green: #78ad42;
+  --color-green-dark: #73a53d;
+
+}

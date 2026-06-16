@@ -1,0 +1,408 @@
+/* ==========================================
+   SECTION
+========================================== */
+
+.lendControl-section{
+  width:100%;
+  background:var(--color-bg-white);
+  padding:60px 0 70px;
+  overflow:hidden;
+}
+
+.lendControl-container{
+  width:100%;
+  max-width:1450px;
+  margin:auto;
+
+  padding:0 80px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  /* gap:90px; */
+}
+
+/* ==========================================
+   LEFT
+========================================== */
+
+.lendControl-left{
+  flex:1;
+  display:flex;
+  justify-content:center;
+}
+
+.lendControl-image{
+  width:75%;
+  max-width:600px;
+  object-fit:contain;
+}
+
+/* ==========================================
+   RIGHT
+========================================== */
+
+.lendControl-right{
+  flex:1;
+  max-width:600px;
+}
+
+.lendControl-right h2{
+  font-size:53px;
+  line-height:1.1;
+  font-weight:500;
+  color:var(--color-text-dark);
+  margin-bottom:35px;
+}
+
+.lendControl-right p{
+  font-size:18px;
+  line-height:1.8;
+  color:var(--color-text-body);
+  margin-bottom:40px;
+}
+
+.lendControl-btn{
+  border:none;
+  cursor:pointer;
+
+  min-width:160px;
+  height:52px;
+
+  border-radius:60px;
+
+  font-size:17px;
+  font-weight:600;
+  color:white;
+
+  background:linear-gradient(
+    135deg,
+    var(--color-accent),
+    var(--color-primary)
+  );
+
+  transition:.35s ease;
+}
+
+.lendControl-btn:hover{
+  transform:translateY(-4px);
+}
+
+/* ==========================================
+   FEATURES
+========================================== */
+
+.lendControl-features{
+  width:100%;
+  max-width:1450px;
+
+  margin:70px auto 0px 130px;
+  padding:0 70px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:30px;
+}
+
+.lendControl-feature{
+  flex:1;
+
+  font-size:18px;
+  color:var(--color-text-dark);
+
+  display:flex;
+  align-items:center;
+  /* gap:12px; */
+}
+
+.lendControl-feature strong{
+  font-weight:700;
+}
+
+/* ==========================================
+   LAPTOP
+========================================== */
+
+@media(max-width:1200px){
+
+  .lendControl-right h2{
+    font-size:52px;
+  }
+
+  .lendControl-feature{
+    font-size:22px;
+  }
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:992px){
+
+  .lendControl-container{
+    flex-direction:column;
+    text-align:center;
+    padding:0 30px;
+    gap:50px;
+  }
+
+  .lendControl-right{
+    max-width:100%;
+  }
+
+  .lendControl-right h2{
+    font-size:44px;
+  }
+
+  .lendControl-right p{
+    font-size:18px;
+  }
+
+  .lendControl-features{
+    flex-direction:column;
+    align-items:center;
+    padding:0 30px;
+    gap:22px;
+  }
+
+  .lendControl-feature{
+    justify-content:center;
+    text-align:center;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+  .lendControl-section{
+    padding:60px 0;
+  }
+
+  .lendControl-container{
+    padding:0 20px;
+  }
+
+  .lendControl-right h2{
+    font-size:34px;
+  }
+
+  .lendControl-right p{
+    font-size:16px;
+  }
+
+  .lendControl-btn{
+    width:100%;
+    max-width:280px;
+    height:58px;
+    font-size:18px;
+  }
+
+  .lendControl-features{
+    padding:0 20px;
+  }
+
+  .lendControl-feature{
+    font-size:18px;
+  }
+}
+
+/* ==========================================
+   SMALL MOBILE
+========================================== */
+
+@media(max-width:480px){
+
+  .lendControl-right h2{
+    font-size:28px;
+  }
+
+  .lendControl-right p{
+    font-size:15px;
+  }
+
+  .lendControl-feature{
+    font-size:16px;
+  }
+}
+
+
+
+/* ==========================================
+   MANUAL LENDING SECTION
+========================================== */
+
+.manualLending-section{
+  width:100%;
+  background:var(--color-bg-white);
+  padding:50px 0;
+}
+
+.manualLending-header{
+  max-width:1200px;
+  margin:auto;
+  text-align:center;
+  padding:0 20px;
+}
+
+.manualLending-header h2{
+  font-size:45px;
+  font-weight:500;
+  color:var(--color-text-dark);
+  margin-bottom:30px;
+}
+
+.manualLending-header p{
+  font-size:19px;
+ 
+  line-height:1.7;
+  font-weight:500;
+  color:var(--color-text-body);
+}
+
+/* ==========================================
+   GRID
+========================================== */
+
+.manualLending-grid{
+  max-width:1350px;
+  margin:70px auto 0;
+
+  padding:0 80px;
+
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:35px;
+}
+
+/* ==========================================
+   CARD
+========================================== */
+
+.manualLending-card{
+  background:#fff;
+
+  border:1px solid #e5e7eb;
+
+  border-radius:35px;
+
+  padding:60px 22px;
+
+  text-align:center;
+
+  transition:.4s ease;
+
+  box-shadow:
+  0 8px 25px rgba(0,0,0,.04);
+}
+
+.manualLending-icon{
+  width:100px;
+  height:100px;
+
+  margin:0 auto 35px;
+
+  border-radius:50%;
+
+  background:#c8ef1f;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:.4s ease;
+
+  font-size:50px;
+  color:white;
+}
+.manualLending-card:hover{
+  .manualLending-icon{
+    background:var(--color-primary);
+  }
+}
+
+.manualLending-card h3{
+  font-size:24px;
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-weight:500;
+  color:var(--color-text-dark);
+
+  margin-bottom:12px;
+}
+
+.manualLending-card p{
+  font-size:17px;
+  line-height:2;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  color:var(--color-text-body);
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media(max-width:992px){
+
+  .manualLending-header h2{
+    font-size:48px;
+  }
+
+  .manualLending-header p{
+    font-size:18px;
+  }
+
+  .manualLending-grid{
+    grid-template-columns:1fr;
+    padding:0 30px;
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+  .manualLending-section{
+    padding:80px 0;
+  }
+
+  .manualLending-header h2{
+    font-size:34px;
+  }
+
+  .manualLending-header p{
+    font-size:15px;
+    line-height:1.8;
+  }
+
+  .manualLending-grid{
+    margin-top:50px;
+    padding:0 20px;
+    gap:25px;
+  }
+
+  .manualLending-card{
+    padding:35px 25px;
+    border-radius:24px;
+  }
+
+  .manualLending-icon{
+    width:90px;
+    height:90px;
+    font-size:35px;
+    margin-bottom:20px;
+  }
+
+  .manualLending-card h3{
+    font-size:22px;
+  }
+
+  .manualLending-card p{
+    font-size:15px;
+    line-height:1.8;
+  }
+}

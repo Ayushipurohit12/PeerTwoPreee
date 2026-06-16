@@ -1,0 +1,560 @@
+.wlb-section{
+  width:100%;
+  padding:140px 0 80px;
+  background:var(--color-bg-white);
+}
+
+.wlb-container{
+  width:100%;
+  max-width:1450px;
+  margin:auto;
+}
+
+.wlb-title{
+  text-align:center;
+  font-size:45px;
+  line-height:1.15;
+  font-weight:600;
+  color:var(--color-text-dark);
+  margin-bottom:60px;
+}
+
+.wlb-title span{
+  color:var(--color-accent);
+}
+
+.wlb-slider-wrapper{
+  position:relative;
+}
+
+.wlb-video-card{
+  display:block;
+  overflow:hidden;
+  /* height:500px; */
+  border-radius:10px;
+}
+
+.wlb-video-card img{
+  width:100%;
+  display:block;
+  /* border-radius:1px; */
+  transition:.4s;
+}
+
+.wlb-video-card:hover img{
+  transform:scale(1.04);
+}
+
+.wlb-prev,
+.wlb-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:62px;
+  height:62px;
+  border:none;
+  border-radius:50%;
+  background:var(--color-accent);
+  color:white;
+  z-index:20;
+  cursor:pointer;
+  font-size:32px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.wlb-prev{
+  left:20px;
+}
+
+.wlb-next{
+  right:20px;
+}
+
+.wlb-bottom-text{
+  text-align:center;
+  margin-top:55px;
+  font-size:19px;
+  color:var(--color-text-body);
+  line-height:1.8;
+}
+
+/* ======================
+   LAPTOP
+====================== */
+
+@media(max-width:1200px){
+
+  .wlb-title{
+    font-size:52px;
+  }
+
+  .wlb-bottom-text{
+    font-size:22px;
+  }
+}
+
+/* ======================
+   TABLET
+====================== */
+
+@media(max-width:768px){
+
+  .wlb-section{
+    padding:70px 0;
+  }
+
+  .wlb-title{
+    font-size:38px;
+    margin-bottom:40px;
+  }
+
+  .wlb-prev,
+  .wlb-next{
+    width:50px;
+    height:50px;
+    font-size:26px;
+  }
+
+  .wlb-bottom-text{
+    font-size:18px;
+    padding:0 20px;
+  }
+}
+
+/* ======================
+   MOBILE
+====================== */
+
+@media(max-width:480px){
+
+  .wlb-title{
+    font-size:30px;
+    line-height:1.3;
+  }
+
+  .wlb-prev{
+    left:8px;
+  }
+
+  .wlb-next{
+    right:8px;
+  }
+
+  .wlb-bottom-text{
+    font-size:16px;
+  }
+}
+
+
+/* ===================================
+   KNOW & GROW
+=================================== */
+
+.knowGrowSection{
+  width:100%;
+  padding:100px 0;
+  background:#f4fcff;
+}
+
+.knowGrowContainer{
+  width:90%;
+  max-width:1600px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:130px;
+  align-items:center;
+}
+
+/* LEFT */
+.knowGrowContent{
+    margin: 0 40px;
+    /* width:100%; */
+}
+.knowGrowContent h2{
+  font-size:40px;
+  line-height:1.1;
+  font-weight:600;
+  color:var(--color-text-dark);
+  margin-bottom:25px;
+}
+
+.knowGrowContent p{
+  font-size:18px;
+  line-height:1.8;
+  color:var(--color-text-body);
+  max-width:700px;
+}
+
+/* RIGHT */
+
+.knowGrowSliderBox{
+  position:relative;
+  overflow:hidden;
+}
+
+.knowGrowSwiper{
+  overflow:visible;
+}
+
+/* CARD */
+
+.kgVideoCard{
+  height:550px;
+  width:350px;
+  border-radius:18px;
+  /* overflow:hidden; */
+  background:#fff;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.kgVideoCard img{
+  width:95%;
+  height:100%;
+  border-radius:18px;
+  /* object-fit:cover; */
+  display:block;
+}
+
+/* ARROWS */
+
+.kg-prev,
+.kg-next{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:60px;
+  height:60px;
+  border:none;
+  border-radius:50%;
+  background:var(--color-accent);
+  color:#fff;
+  cursor:pointer;
+  z-index:20;
+  font-size:20px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.kg-prev{
+  left:10px;
+}
+
+.kg-next{
+  right:10px;
+}
+
+.kg-prev:hover,
+.kg-next:hover{
+  background:var(--color-primary);
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media(max-width:1200px){
+
+  .knowGrowContent h2{
+    font-size:52px;
+  }
+
+  .kgVideoCard{
+    height:620px;
+  }
+}
+
+@media(max-width:992px){
+
+  .knowGrowContainer{
+    grid-template-columns:1fr;
+    gap:50px;
+  }
+
+  .knowGrowContent{
+    text-align:center;
+  }
+
+  .knowGrowContent p{
+    margin:auto;
+  }
+
+  .knowGrowContent h2{
+    font-size:46px;
+  }
+
+  .kgVideoCard{
+    height:580px;
+  }
+}
+
+@media(max-width:768px){
+
+  .knowGrowSection{
+    padding:70px 0;
+  }
+
+  .knowGrowContent h2{
+    font-size:36px;
+  }
+
+  .knowGrowContent p{
+    font-size:16px;
+  }
+
+  .kgVideoCard{
+    height:480px;
+  }
+
+  .kg-prev,
+  .kg-next{
+    width:46px;
+    height:46px;
+    font-size:15px;
+  }
+
+  .kg-prev{
+    left:-10px;
+  }
+
+  .kg-next{
+    right:-10px;
+  }
+}
+
+@media(max-width:480px){
+
+  .knowGrowContent h2{
+    font-size:30px;
+  }
+
+  .kgVideoCard{
+    height:420px;
+  }
+}
+
+
+/* ==================================================
+   DOWNLOAD APP CTA
+================================================== */
+
+.wlDownloadCtaSection{
+  width:100%;
+  padding:110px 0;
+  /* background:var(--color-bg-light); */
+}
+
+.wlDownloadCtaContainer{
+  width:88%;
+  max-width:1500px;
+  margin:auto;
+
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:80px;
+}
+
+/* ======================
+   LEFT
+====================== */
+
+.wlDownloadCtaContent h2{
+  font-size:39px;
+  line-height:1.15;
+  font-weight:600;
+  color:var(--color-text-dark);
+  margin-bottom:40px;
+}
+
+.wlDownloadCtaContent h2 span{
+  color:var(--color-accent);
+}
+
+.wlDownloadStoreBtns{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.wlDownloadStoreBtns img{
+  width:170px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.wlDownloadStoreBtns img:hover{
+  transform:translateY(-5px);
+}
+
+/* ======================
+   RIGHT
+====================== */
+
+.wlDownloadCtaImage{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+/* .wlDownloadCtaImage img{
+  width:70%;
+  height:auto;
+  object-fit:contain;
+} */
+
+.wlDownloadCircle{
+  width:340px;
+  height:485px;
+
+  border-radius:250px 250px 0px 0;
+
+  background:var(--color-accent);
+
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+
+  overflow:hidden;
+
+  position:relative;
+}
+
+.wlDownloadCircle::before{
+  content:"";
+
+  position:absolute;
+
+  width:520px;
+  height:520px;
+
+  border-radius:260px 260px 0 0;
+
+  border:10px solid rgba(255,255,255,.35);
+
+  top:15px;
+  left:50%;
+
+  transform:translateX(-50%);
+}
+
+.wlDownloadCircle img{
+  width:90%;
+  height:auto;
+  object-fit:contain;
+  position:relative;
+  z-index:2;
+}
+
+/* ======================
+   LAPTOP
+====================== */
+
+@media(max-width:1400px){
+
+  .wlDownloadCtaContent h2{
+    font-size:60px;
+  }
+
+  .wlDownloadCircle{
+    width:480px;
+    height:480px;
+  }
+
+  .wlDownloadCircle::before{
+    width:450px;
+    height:450px;
+  }
+}
+
+/* ======================
+   TABLET
+====================== */
+
+@media(max-width:992px){
+
+  .wlDownloadCtaContainer{
+    grid-template-columns:1fr;
+    gap:60px;
+  }
+
+  .wlDownloadCtaContent{
+    text-align:center;
+  }
+
+  .wlDownloadStoreBtns{
+    justify-content:center;
+  }
+
+  .wlDownloadCtaContent h2{
+    font-size:52px;
+  }
+
+  .wlDownloadCircle{
+    width:450px;
+    height:450px;
+  }
+}
+
+/* ======================
+   MOBILE
+====================== */
+
+@media(max-width:768px){
+
+  .wlDownloadCtaSection{
+    padding:80px 0;
+  }
+
+  .wlDownloadCtaContent h2{
+    font-size:40px;
+  }
+
+  .wlDownloadStoreBtns{
+    gap:12px;
+    flex-wrap:wrap;
+  }
+
+  .wlDownloadStoreBtns img{
+    width:145px;
+  }
+
+  .wlDownloadCircle{
+    width:330px;
+    height:330px;
+  }
+
+  .wlDownloadCircle::before{
+    width:300px;
+    height:300px;
+  }
+}
+
+/* ======================
+   SMALL MOBILE
+====================== */
+
+@media(max-width:480px){
+
+  .wlDownloadCtaContent h2{
+    font-size:32px;
+  }
+
+  .wlDownloadCircle{
+    width:260px;
+    height:260px;
+  }
+
+  .wlDownloadCircle::before{
+    width:235px;
+    height:235px;
+  }
+
+  .wlDownloadStoreBtns img{
+    width:125px;
+  }
+}

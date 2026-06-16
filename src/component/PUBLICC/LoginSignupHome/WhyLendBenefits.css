@@ -1,0 +1,280 @@
+/* ======================================================
+   SECTION
+====================================================== */
+
+.whyLendBenefits-section {
+  width: 100%;
+  padding: 50px 70px;
+  background: var(--color-bg-white);
+  overflow: hidden;
+}
+
+/* ======================================================
+   CONTAINER
+====================================================== */
+
+.whyLendBenefits-container {
+  width: 100%;
+  max-width: 1450px;
+  margin: 0 auto;
+
+  padding: 0 60px;
+}
+
+/* ======================================================
+   TITLE
+====================================================== */
+
+.whyLendBenefits-title {
+  font-size: 39px;
+  line-height: 1.1;
+  font-weight: 600;
+
+  color: var(--color-text-dark);
+
+  margin-bottom: 65px;
+}
+
+/* ======================================================
+   WRAPPER
+====================================================== */
+
+.whyLendBenefits-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 50px;
+}
+
+/* ======================================================
+   LEFT GRID
+====================================================== */
+
+.whyLendBenefits-cards {
+  flex: 1;
+
+  display: grid;
+ 
+  grid-template-columns: repeat(2, 1fr);
+ 
+  gap: 28px;
+}
+
+/* ======================================================
+   CARD
+====================================================== */
+
+.whyLendBenefits-card {
+  background: #f4fbe2;
+
+  border: 1px solid #dfe7cb;
+
+  border-radius: 30px;
+ /* width: 400px; */
+  /* height: 100px; */
+  padding: 38px;
+
+  min-height: 275px;
+
+  transition: 0.35s ease;
+}
+
+.whyLendBenefits-card:hover {
+  transform: translateY(-8px);
+}
+
+.whyLendBenefits-iconBox {
+  width: 50px;
+  height: 50px;
+
+  background: #b8ef43;
+
+  border-radius: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 30px;
+
+  font-size: 30px;
+
+  color: var(--color-text-dark);
+}
+
+.whyLendBenefits-card h3 {
+  font-size: 16px;
+  line-height: 1.2;
+  font-weight: 600;
+
+  color: var(--color-text-dark);
+
+  margin-bottom: 18px;
+}
+
+.whyLendBenefits-card p {
+  font-size: 14px;
+  line-height: 1.8;
+
+  color: var(--color-text-muted);
+}
+
+/* ======================================================
+   RIGHT MOBILE
+====================================================== */
+
+.whyLendBenefits-mobileBox {
+  width: 360px;
+
+  display: flex;
+  justify-content: center;
+}
+
+.whyLendBenefits-mobileCard {
+  width: 100%;
+  /* background: #dff1fb; */
+
+  border-radius: 36px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 26px 20px;
+}
+
+.whyLendBenefits-mobileImg {
+  width: 100%;
+  /* max-width: 260px; */
+
+  object-fit: contain;
+
+  transition: 0.4s ease;
+}
+
+.whyLendBenefits-mobileCard:hover .whyLendBenefits-mobileImg {
+  transform: translateY(-10px);
+}
+
+/* ======================================================
+   LAPTOP
+====================================================== */
+
+@media (max-width: 1300px) {
+
+  .whyLendBenefits-title {
+    font-size: 54px;
+  }
+
+  .whyLendBenefits-card h3 {
+    font-size: 28px;
+  }
+
+  .whyLendBenefits-card p {
+    font-size: 18px;
+  }
+}
+
+/* ======================================================
+   TABLET
+====================================================== */
+
+@media (max-width: 992px) {
+
+  .whyLendBenefits-wrapper {
+    flex-direction: column;
+  }
+
+  .whyLendBenefits-mobileBox {
+    width: 100%;
+  }
+
+  .whyLendBenefits-mobileCard {
+    max-width: 420px;
+    margin: auto;
+  }
+
+  .whyLendBenefits-title {
+    font-size: 44px;
+    margin-bottom: 45px;
+  }
+}
+
+/* ======================================================
+   MOBILE
+====================================================== */
+
+@media (max-width: 768px) {
+
+  .whyLendBenefits-section {
+    padding: 70px 0;
+  }
+
+  .whyLendBenefits-container {
+    padding: 0 20px;
+  }
+
+  .whyLendBenefits-title {
+    font-size: 32px;
+    margin-bottom: 35px;
+  }
+
+  .whyLendBenefits-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .whyLendBenefits-card {
+    min-height: auto;
+    padding: 30px 24px;
+
+    border-radius: 24px;
+  }
+
+  .whyLendBenefits-iconBox {
+    width: 54px;
+    height: 54px;
+
+    font-size: 28px;
+
+    border-radius: 14px;
+
+    margin-bottom: 22px;
+  }
+
+  .whyLendBenefits-card h3 {
+    font-size: 24px;
+  }
+
+  .whyLendBenefits-card p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .whyLendBenefits-mobileCard {
+    border-radius: 28px;
+  }
+
+  .whyLendBenefits-mobileImg {
+    max-width: 220px;
+  }
+}
+
+/* ======================================================
+   SMALL MOBILE
+====================================================== */
+
+@media (max-width: 480px) {
+
+  .whyLendBenefits-title {
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .whyLendBenefits-card h3 {
+    font-size: 21px;
+  }
+
+  .whyLendBenefits-card p {
+    font-size: 14px;
+  }
+}

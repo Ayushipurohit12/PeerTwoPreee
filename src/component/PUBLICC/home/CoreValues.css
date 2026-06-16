@@ -1,0 +1,438 @@
+/* ===================================
+   GLOBAL
+=================================== */
+
+.cvx-wrapper *{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+.cvx-wrapper{
+  width:100%;
+  overflow:hidden;
+  background:var(--color-bg-light-blue);
+}
+
+/* ===================================
+   VALUES SECTION
+=================================== */
+
+.cvx-values-section{
+  width:100%;
+  padding:100px 10%;
+}
+
+.cvx-main-heading{
+  text-align:center;
+  font-size:48px;
+  line-height:1.2;
+  color:#000;
+  font-weight:500;
+  letter-spacing:-1px;
+  margin-bottom:60px;
+}
+
+/* ===================================
+   CARDS
+=================================== */
+
+.cvx-cards-grid{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:22px;
+  align-items:start;
+}
+
+.cvx-card{
+  background:var(--color-bg-white);
+  border-radius:26px;
+  padding:38px 28px;
+  text-align:center;
+  transition:.4s ease;
+  border:1px solid rgba(0,0,0,.05);
+  box-shadow:
+  0 10px 30px rgba(0,0,0,.04),
+  0 2px 10px rgba(0,0,0,.03);
+
+  height:auto;
+  min-height:auto;
+  align-self:start;
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+}
+
+.cvx-card:hover{
+  transform:translateY(-14px) !important;
+  box-shadow:
+  0 25px 60px rgba(0,0,0,.10),
+  0 5px 20px rgba(0,0,0,.06);
+}
+
+/* ===================================
+   ICON
+=================================== */
+
+.cvx-icon-wrap{
+  width:88px;
+  height:88px;
+  border-radius:50%;
+  background:#d6f019;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  margin:auto;
+  margin-bottom:24px;
+  transition:.4s ease;
+  flex-shrink:0;
+}
+
+.cvx-card:hover .cvx-icon-wrap{
+  background:var(--color-primary);
+}
+
+.cvx-card-icon{
+  font-size:38px;
+  color:var(--color-text-white);
+}
+
+/* ===================================
+   TEXT
+=================================== */
+
+.cvx-card-title{
+  font-size:20px;
+  line-height:1.4;
+  color:#000;
+  margin-bottom:14px;
+  font-weight:500;
+}
+
+.cvx-card-text{
+  font-size:16px;
+  line-height:1.8;
+  color:#202020;
+}
+
+/* ===================================
+   BUTTON
+=================================== */
+
+.cvx-create-btn{
+  width:240px;
+  height:60px;
+  border:none;
+  border-radius:18px;
+  background:var(--color-primary);
+  color:var(--color-text-white);
+  font-size:17px;
+  font-weight:600;
+  display:block;
+  margin:auto;
+  margin-top:55px;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.cvx-create-btn:hover{
+  transform:translateY(-5px);
+  background:var(--color-accent);
+}
+
+/* ===================================
+   STEPS SECTION
+=================================== */
+
+.cvx-steps-section{
+  width:100%;
+  padding:70px 11%;
+}
+
+.cvx-steps-container{
+  width:100%;
+  max-width:1400px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:50px;
+}
+
+/* ===================================
+   LEFT
+=================================== */
+
+.cvx-steps-heading{
+  font-size:25px;
+  line-height:1.4;
+  font-weight:500;
+  color:#000;
+  max-width:650px;
+  margin-bottom:45px;
+}
+
+.cvx-steps-list{
+  display:flex;
+  flex-direction:column;
+  gap:28px;
+}
+
+.cvx-step-item{
+  display:flex;
+  align-items:center;
+  gap:20px;
+}
+
+.cvx-step-number{
+  width:50px;
+  height:50px;
+  border:2px dashed var(--color-accent);
+  border-radius:10px;
+  background:#f5fcff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:22px;
+  color:var(--color-accent);
+  flex-shrink:0;
+}
+
+.cvx-step-text{
+  font-size:23px;
+  color:#000;
+  font-weight:500;
+  line-height:1.4;
+}
+
+.cvx-step-btn{
+  width:200px;
+  height:55px;
+  border:none;
+  border-radius:18px;
+  background:var(--color-primary);
+  color:var(--color-text-white);
+  font-size:16px;
+  font-weight:600;
+  margin-top:45px;
+  cursor:pointer;
+  transition:.4s;
+}
+
+.cvx-step-btn:hover{
+  transform:translateY(-5px);
+  background:var(--color-primary-darker);
+}
+
+/* ===================================
+   RIGHT
+=================================== */
+
+.cvx-steps-right{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.cvx-phone-image{
+  width:100%;
+  max-width:480px;
+  filter:drop-shadow(0 25px 50px rgba(0,0,0,.22));
+}
+
+/* ===================================
+   RESPONSIVE
+=================================== */
+
+@media(max-width:1200px){
+
+  .cvx-values-section{
+    padding:90px 6%;
+  }
+
+  .cvx-main-heading{
+    font-size:42px;
+  }
+
+  .cvx-cards-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .cvx-steps-heading{
+    font-size:30px;
+  }
+
+  .cvx-step-text{
+    font-size:22px;
+  }
+
+}
+
+@media(max-width:992px){
+
+  .cvx-values-section{
+    padding:80px 30px;
+  }
+
+  .cvx-cards-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cvx-card{
+    width:100%;
+  }
+
+  .cvx-steps-container{
+    grid-template-columns:1fr;
+    text-align:center;
+    gap:40px;
+  }
+
+  .cvx-steps-heading{
+    max-width:100%;
+    font-size:28px;
+  }
+
+  .cvx-step-item{
+    justify-content:center;
+  }
+
+  .cvx-step-btn{
+    margin:auto;
+    margin-top:40px;
+  }
+
+  .cvx-phone-image{
+    max-width:320px;
+    margin-top:10px;
+  }
+
+}
+
+@media(max-width:768px){
+
+  .cvx-values-section{
+    padding:70px 20px;
+  }
+
+  .cvx-main-heading{
+    font-size:30px;
+    line-height:1.3;
+    margin-bottom:35px;
+  }
+
+  .cvx-cards-grid{
+    gap:18px;
+  }
+
+  .cvx-card{
+    padding:28px 22px;
+    border-radius:22px;
+  }
+
+  .cvx-icon-wrap{
+    width:76px;
+    height:76px;
+    margin-bottom:20px;
+  }
+
+  .cvx-card-icon{
+    font-size:32px;
+  }
+
+  .cvx-card-title{
+    font-size:20px;
+  }
+
+  .cvx-card-text{
+    font-size:15px;
+    line-height:1.7;
+  }
+
+  .cvx-create-btn{
+    width:100%;
+    max-width:240px;
+    height:54px;
+    font-size:16px;
+    margin-top:40px;
+  }
+
+  /* ===================================
+     STEPS
+  =================================== */
+
+  .cvx-steps-section{
+    padding:50px 20px 80px;
+  }
+
+  .cvx-steps-heading{
+    font-size:25px;
+    margin-bottom:30px;
+  }
+
+  .cvx-steps-list{
+    gap:20px;
+  }
+
+  .cvx-step-item{
+    gap:14px;
+  }
+
+  .cvx-step-number{
+    width:48px;
+    height:48px;
+    font-size:20px;
+  }
+
+  .cvx-step-text{
+    font-size:17px;
+  }
+
+  .cvx-step-btn{
+    width:100%;
+    max-width:220px;
+    height:54px;
+    font-size:16px;
+  }
+
+  .cvx-phone-image{
+    max-width:240px;
+  }
+
+}
+
+@media(max-width:480px){
+
+  .cvx-main-heading{
+    font-size:26px;
+  }
+
+  .cvx-card{
+    padding:24px 18px;
+  }
+
+  .cvx-card-title{
+    font-size:18px;
+  }
+
+  .cvx-card-text{
+    font-size:14px;
+  }
+
+  .cvx-steps-heading{
+    font-size:22px;
+  }
+
+  .cvx-step-text{
+    font-size:15px;
+  }
+
+  .cvx-phone-image{
+    max-width:200px;
+  }
+
+}

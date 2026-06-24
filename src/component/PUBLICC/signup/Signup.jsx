@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import StepIndicator from './StepIndicator';
 import Step1Email from './Step1Email';
 import Step2Mobile from './Step2Mobile';
 import Step3Register from './Step3Register';
 import SuccessScreen from './SuccessScreen';
-import FullNamePopup from '../shared/FullNamePopup';
-import { isUserProfileCreated } from '../../../services/authApi';
 import styles from './Signup.module.css';
 
 import { BsApple } from "react-icons/bs";
@@ -24,23 +21,13 @@ const INITIAL_FORM = {
 };
 
 const Signup = () => {
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [done, setDone] = useState(false);
   const [formData, setFormData] = useState(INITIAL_FORM);
-  const [loginData, setLoginData] = useState(null);
-  const [showNamePopup, setShowNamePopup] = useState(false);
-
   const trackOffset = `translateX(-${(step - 1) * 33.333}%)`;
 
-  const handleRegisterSuccess = (data) => {
-    if (isUserProfileCreated()) {
-      setDone(true);
-      return;
-    }
-
-    setLoginData(data);
-    setShowNamePopup(true);
+  const handleRegisterSuccess = () => {
+    setDone(true);
   };
 
   return (
@@ -148,16 +135,6 @@ const Signup = () => {
     <WhyLendBenefits/>
     <WhyLendBenefits2/>
 
-    {showNamePopup && loginData && (
-      <FullNamePopup
-        userData={loginData}
-        onClose={() => {
-          setShowNamePopup(false);
-          navigate("/login");
-        }}
-        onSuccess={() => setDone(true)}
-      />
-    )}
     </>
   );
 };

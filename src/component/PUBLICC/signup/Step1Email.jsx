@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaCheckCircle, FaSpinner } from 'react-icons/fa';
 import OtpInput from './OtpInput';
 import useOtpInput from '../../../hooks/useOtpInput';
@@ -7,6 +8,7 @@ import { sendOtpToEmail, verifyEmailOtp } from '../../../services/authApi';
 import styles from './Signup.module.css';
 
 const Step1Email = ({ onNext, formData, setFormData }) => {
+  const navigate = useNavigate();
   const [phase, setPhase] = useState('email'); // 'email' | 'otp'
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -124,7 +126,15 @@ const Step1Email = ({ onNext, formData, setFormData }) => {
       )}
 
       <div className={styles.loginLink}>
-        Already have an account? <span>Login</span>
+        Already have an account?{' '}
+        <span
+          role="button"
+          tabIndex={0}
+          onClick={() => navigate('/login')}
+          onKeyDown={(e) => e.key === 'Enter' && navigate('/login')}
+        >
+          Login
+        </span>
       </div>
     </div>
   );

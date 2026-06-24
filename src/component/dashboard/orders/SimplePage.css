@@ -1,0 +1,13 @@
+.simple-page {
+  padding: 2rem 2.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.simple-page h2 {
+  margin: 0 0 0.5rem;
+}
+
+.simple-page p {
+  color: #6b7280;
+}

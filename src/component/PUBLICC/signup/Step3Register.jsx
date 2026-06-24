@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { FaLock, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
-import { registerUser } from '../../../services/authApi';
+import {
+  registerUser,
+  loginWithPassword,
+  saveAuthTokens,
+} from '../../../services/authApi';
 import styles from './Signup.module.css';
 
 const getStrength = (pass) => {
@@ -39,7 +43,15 @@ const Step3Register = ({ onBack, onSuccess, formData, setFormData }) => {
         mobile: formData.mobile,
         role: formData.role,
       });
-      onSuccess();
+
+      const loginData = await loginWithPassword({
+        email: formData.email,
+        password: formData.password,
+      });
+      saveAuthTokens(loginData);
+      localStorage.setItem('isLogin', 'true');
+      localStorage.setItem('userData', JSON.stringify(loginData));
+      onSuccess(loginData);
     } catch (err) {
       setError(err?.response?.data?.message || 'Registration failed. Please try again.');
     } finally {

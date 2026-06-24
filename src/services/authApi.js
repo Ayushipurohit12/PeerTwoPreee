@@ -288,6 +288,18 @@ export const markUserProfileCreated = () => {
   localStorage.setItem("userCreated", "true");
 };
 
+export const hasExistingUserProfile = (loginResponse) => {
+  const loginData = loginResponse?.data ?? loginResponse;
+  const storedFullName = localStorage.getItem("fullName") || "";
+  const responseFullName = loginData?.fullName || "";
+
+  return (
+    isUserProfileCreated() ||
+    Boolean(responseFullName.trim()) ||
+    Boolean(storedFullName.trim())
+  );
+};
+
 export const saveLoginSession = (loginResponse, { fullName } = {}) => {
   const loginData = loginResponse?.data ?? loginResponse;
   if (!loginData) return;
@@ -312,7 +324,13 @@ export const saveLoginSession = (loginResponse, { fullName } = {}) => {
     "refreshTokenExpiresIn",
     loginData.refreshTokenExpiresIn ?? "",
   );
+
+  if (fullNameValue.trim()) {
+    markUserProfileCreated();
+  }
 };
+
+let _createUserProfilePromise = null;
 
 export const createUserProfile = async ({
   authId,
@@ -326,28 +344,55 @@ export const createUserProfile = async ({
   ipAddress = "192.168.1.100",
   actionBy = "SYSTEM",
 }) => {
-  const response = await axios.post(
-    "/api/v1/users",
-    {
-      authId,
-      fullName,
-      email,
-      mobile,
-      roleName,
-      deviceId,
-      deviceType,
-      os,
-      ipAddress,
-      actionBy,
-    },
-    {
-      headers: getAuthHeaders(),
-    },
-  );
+  if (isUserProfileCreated()) {
+    return { alreadyCreated: true };
+  }
 
-  markUserProfileCreated();
-  localStorage.setItem("accountStatus", "KYC PENDING");
-  return response.data;
+  if (_createUserProfilePromise) {
+    return _createUserProfilePromise;
+  }
+
+  _createUserProfilePromise = axios
+    .post(
+      "/api/v1/users",
+      {
+        authId,
+        fullName,
+        email,
+        mobile,
+        roleName,
+        deviceId,
+        deviceType,
+        os,
+        ipAddress,
+        actionBy,
+      },
+      {
+        headers: getAuthHeaders(),
+      },
+    )
+    .then((response) => {
+      markUserProfileCreated();
+      localStorage.setItem("accountStatus", "KYC PENDING");
+      return response.data;
+    })
+    .catch((error) => {
+      if (error?.response?.status === 409) {
+        markUserProfileCreated();
+        return {
+          alreadyCreated: true,
+          message:
+            error?.response?.data?.message || "User profile already exists.",
+        };
+      }
+
+      throw error;
+    })
+    .finally(() => {
+      _createUserProfilePromise = null;
+    });
+
+  return _createUserProfilePromise;
 };
 
 // =====================================================

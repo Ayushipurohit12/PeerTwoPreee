@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import logo from "../../assets/l-logo.png";
 import FullNamePopup from "../PUBLICC/shared/FullNamePopup";
-import { isUserProfileCreated } from "../../services/authApi";
+import { hasExistingUserProfile } from "../../services/authApi";
 import "../dashboard/home/DashboardHome.css";
 
 const navItems = [
@@ -24,10 +24,6 @@ const navItems = [
 const DashboardLayout = () => {
   const navigate = useNavigate();
   const fullName = localStorage.getItem("fullName") || "User";
-  const [showProfileSetup, setShowProfileSetup] = useState(
-    () => !isUserProfileCreated(),
-  );
-
   const storedUserData = useMemo(() => {
     try {
       const raw = localStorage.getItem("userData");
@@ -36,6 +32,10 @@ const DashboardLayout = () => {
       return null;
     }
   }, []);
+
+  const [showProfileSetup, setShowProfileSetup] = useState(
+    () => !hasExistingUserProfile(storedUserData),
+  );
 
   const getInitials = (name) =>
     name

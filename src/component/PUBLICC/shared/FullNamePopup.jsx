@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   createUserProfile,
   saveLoginSession,
+  hasExistingUserProfile,
 } from "../../../services/authApi";
 import styles from "../login/Login.module.css";
 
 const FullNamePopup = ({ userData, onClose, onSuccess }) => {
-  const navigate = useNavigate();
   const loginData = userData?.data ?? userData;
   const [fullName, setFullName] = useState(loginData?.fullName || "");
   const [error, setError] = useState("");
@@ -23,6 +22,11 @@ const FullNamePopup = ({ userData, onClose, onSuccess }) => {
 
     if (!userData) {
       setError("Unable to save your name. Please login again.");
+      return;
+    }
+
+    if (hasExistingUserProfile(loginData)) {
+      onSuccess?.();
       return;
     }
 
@@ -46,7 +50,6 @@ const FullNamePopup = ({ userData, onClose, onSuccess }) => {
 
       saveLoginSession(loginData, { fullName: fullName.trim() });
       onSuccess?.();
-      navigate("/dashboard");
     } catch (err) {
       setError(
         err?.response?.data?.message ||

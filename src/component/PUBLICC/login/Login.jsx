@@ -5,12 +5,7 @@ import PasswordLogin from "./PasswordLogin";
 import styles from "./Login.module.css";
 import LoginSignHome from "../LoginSignupHome/LoginSignHome";
 import WhyLendBenefits from "../LoginSignupHome/WhyLendBenefits";
-import {
-  saveAuthTokens,
-  saveLoginSession,
-  isUserProfileCreated,
-} from "../../../services/authApi";
-import FullNamePopup from "../shared/FullNamePopup";
+import { saveAuthTokens, saveLoginSession } from "../../../services/authApi";
 
 import { BsApple } from "react-icons/bs";
 import { FaGooglePlay } from "react-icons/fa";
@@ -20,23 +15,15 @@ const Login = () => {
   const navigate = useNavigate();
   const [tab, setTab] = useState("otp");
   const [loggedIn, setLoggedIn] = useState(false);
-  const [userData, setUserData] = useState(null);
-  const [showNamePopup, setShowNamePopup] = useState(false);
 
   const handleSuccess = async (data) => {
     saveAuthTokens(data);
-    setUserData(data);
 
     const loginData = data?.data ?? data;
     saveLoginSession(loginData);
 
-    if (isUserProfileCreated()) {
-      setLoggedIn(true);
-      navigate("/dashboard");
-      return;
-    }
-
-    setShowNamePopup(true);
+    setLoggedIn(true);
+    navigate("/dashboard");
   };
 
   return (
@@ -178,17 +165,6 @@ const Login = () => {
           </div>
         </div>
       </section>
-
-      {showNamePopup && userData && (
-        <FullNamePopup
-          userData={userData}
-          onClose={() => setShowNamePopup(false)}
-          onSuccess={() => {
-            setShowNamePopup(false);
-            setLoggedIn(true);
-          }}
-        />
-      )}
 
       <LoginSignHome />
       <WhyLendBenefits />

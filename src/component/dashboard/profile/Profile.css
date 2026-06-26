@@ -570,6 +570,14 @@
 }
 
 @media (max-width: 600px) {
+  .profile-page {
+    padding: 1.25rem 16px 2rem;
+  }
+
+  .profile-card {
+    max-width: none;
+  }
+
   .quick-actions-card {
     grid-template-columns: 1fr;
   }

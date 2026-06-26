@@ -17,7 +17,7 @@
   font-size: 14px;
   line-height: 1.5;
   background: #f3f4f6;
-  padding: clamp(12px, 2vw, 20px) clamp(0px, 0vw, 0px) 0;
+  padding: clamp(12px, 2vw, 20px) clamp(12px, 3vw, 20px) 0;
 }
 
 .dashboard-home-root a { text-decoration: none; }
@@ -25,6 +25,7 @@
 .dashboard-content-shell {
   max-width: 1200px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .dashboard-content-card {
@@ -1120,14 +1121,107 @@
    RESPONSIVE
    ============================================ */
 @media (max-width: 1060px) {
-  .app-layout { flex-direction: column; }
-  .sidebar { width: 100%; min-height: auto; }
-  .main-col { border-right: none; }
+  .app-layout {
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .sidebar {
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+  }
+
+  .main-col {
+    border-right: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-banner {
+    padding: 20px 20px 72px;
+    min-height: 180px;
+  }
+
+  .hero-banner-wrap {
+    padding-bottom: 88px;
+  }
+
+  .loan-cards-row {
+    gap: 12px;
+    max-width: calc(100% - 24px);
+  }
+
+  .loan-card {
+    width: min(272px, calc(50% - 6px));
+    padding: 14px 12px;
+  }
+
+  .category-icons-row {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px 10px;
+    padding: 16px 12px 20px;
+  }
+
+  .category-item {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+
+  .cat-icon-wrap {
+    width: 64px;
+    height: 64px;
+  }
+
+  .download-section {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 22px 20px;
+  }
+
+  .phone-mockup-wrap {
+    align-self: center;
+    width: 100%;
+    max-width: 280px;
+    height: 260px;
+  }
+
+  .section-block {
+    padding: 18px 16px;
+  }
+
+  .lending-stats-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .stat-col {
+    flex: 1 1 calc(33.333% - 8px);
+    min-width: 90px;
+  }
+
+  .setup-card,
+  .start-lending-card {
+    flex-wrap: wrap;
+  }
+
+  .ten-years-title {
+    font-size: 30px;
+  }
 }
 
 @media (max-width: 640px) {
+  .dashboard-home-root {
+    padding: 10px 12px 0;
+  }
+
   .hero-banner-wrap {
     padding-bottom: 220px;
+  }
+
+  .hero-banner {
+    padding: 18px 16px 70px;
   }
 
   .loan-cards-row {
@@ -1147,22 +1241,143 @@
 
   .banner-title {
     font-size: 1.75rem;
+    letter-spacing: 1px;
   }
 
-  .basket-cards-row { flex-direction: column; }
-  .download-section {
+  .banner-subtitle,
+  .banner-refer-line {
+    font-size: 12px;
+  }
+
+  .category-icons-row {
+    padding: 14px 10px 18px;
+  }
+
+  .category-item {
+    flex: 0 0 calc(50% - 6px);
+    max-width: calc(50% - 6px);
+  }
+
+  .cat-icon-wrap {
+    width: 56px;
+    height: 56px;
+  }
+
+  .category-item p {
+    font-size: 11px;
+  }
+
+  .basket-cards-row {
     flex-direction: column;
-    align-items: flex-start;
+  }
+
+  .basket-card {
+    min-width: 0;
+  }
+
+  .download-section {
+    padding: 20px 16px;
+  }
+
+  .download-text h2 {
+    font-size: 18px;
   }
 
   .phone-mockup-wrap {
     width: 100%;
     max-width: 280px;
-    height: 260px;
+    height: 240px;
     margin: 0 auto;
   }
 
   .app-buttons-row {
     flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .app-store-img,
+  .google-play-img {
+    height: 38px;
+  }
+
+  .lending-stats-row {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .stat-col {
+    flex: 1 1 100%;
+  }
+
+  .live-bar {
+    flex-wrap: wrap;
+  }
+
+  .faq-inner-card {
+    padding: 18px 16px 22px;
+  }
+
+  .faq-hdr {
+    font-size: 16px;
+  }
+
+  .setup-card,
+  .start-lending-card,
+  .crore-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .get-started-btn,
+  .setup-btn {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .estimate-card {
+    flex-direction: column;
+  }
+
+  .calc-visual-wrap {
+    align-self: center;
+  }
+
+  .ten-years-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 18px 16px;
+  }
+
+  .ten-years-title {
+    font-size: 28px;
+  }
+
+  .main-footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    min-height: auto;
+  }
+
+  .footer-copy {
+    position: static;
+    transform: none;
+    white-space: normal;
+    pointer-events: auto;
+    order: 2;
+  }
+
+  .footer-url {
+    order: 1;
+  }
+
+  .footer-links {
+    order: 3;
+    justify-content: center;
+    flex-wrap: wrap;
+    white-space: normal;
   }
 }

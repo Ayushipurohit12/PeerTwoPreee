@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutGrid,
@@ -10,7 +10,10 @@ import {
 } from "lucide-react";
 import logo from "../../assets/l-logo.png";
 import FullNamePopup from "../PUBLICC/shared/FullNamePopup";
-import { hasExistingUserProfile } from "../../services/authApi";
+import {
+  clearInvalidAuthState,
+  hasExistingUserProfile,
+} from "../../services/authApi";
 import "../dashboard/home/DashboardHome.css";
 
 const navItems = [
@@ -36,6 +39,12 @@ const DashboardLayout = () => {
   const [showProfileSetup, setShowProfileSetup] = useState(
     () => !hasExistingUserProfile(storedUserData),
   );
+
+  useEffect(() => {
+    if (!clearInvalidAuthState()) {
+      navigate("/login", { replace: true });
+    }
+  }, [navigate]);
 
   const getInitials = (name) =>
     name
@@ -87,6 +96,24 @@ const DashboardLayout = () => {
       </header>
 
       <Outlet />
+
+      <nav className="dashboard-mobile-nav" aria-label="Dashboard navigation">
+        {navItems.map(({ to, end, label, Icon }) => (
+          <NavLink
+            key={to}
+            to={to}
+            end={end}
+            className={({ isActive }) =>
+              isActive ? "mobile-nav-item active" : "mobile-nav-item"
+            }
+          >
+            <span className="mobile-nav-icon">
+              <Icon size={22} strokeWidth={1.8} />
+            </span>
+            <span className="mobile-nav-label">{label}</span>
+          </NavLink>
+        ))}
+      </nav>
 
       {showProfileSetup && storedUserData && (
         <FullNamePopup

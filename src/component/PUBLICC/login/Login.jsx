@@ -5,7 +5,7 @@ import PasswordLogin from "./PasswordLogin";
 import styles from "./Login.module.css";
 import LoginSignHome from "../LoginSignupHome/LoginSignHome";
 import WhyLendBenefits from "../LoginSignupHome/WhyLendBenefits";
-import { saveAuthTokens, saveLoginSession } from "../../../services/authApi";
+import { saveLoginSession } from "../../../services/authApi";
 
 import { BsApple } from "react-icons/bs";
 import { FaGooglePlay } from "react-icons/fa";
@@ -17,10 +17,10 @@ const Login = () => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   const handleSuccess = async (data) => {
-    saveAuthTokens(data);
-
-    const loginData = data?.data ?? data;
-    saveLoginSession(loginData);
+    const sessionSaved = saveLoginSession(data);
+    if (!sessionSaved) {
+      return;
+    }
 
     setLoggedIn(true);
     navigate("/dashboard");

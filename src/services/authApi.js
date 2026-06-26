@@ -43,6 +43,24 @@ export const saveAuthTokens = (loginResponse) => {
   storeValue("mobile", loginData.mobile);
 };
 
+export const isAuthenticated = () => {
+  const isLogin = localStorage.getItem("isLogin") === "true";
+  const accessToken = localStorage.getItem("accessToken")?.trim();
+  return Boolean(isLogin && accessToken);
+};
+
+export const clearInvalidAuthState = () => {
+  const isLogin = localStorage.getItem("isLogin") === "true";
+  const accessToken = localStorage.getItem("accessToken")?.trim();
+
+  if (isLogin !== Boolean(accessToken)) {
+    clearAuthStorage();
+    return false;
+  }
+
+  return isAuthenticated();
+};
+
 const getAuthHeaders = () => {
   const tokenType = localStorage.getItem("tokenType") || "Bearer";
   const accessToken = localStorage.getItem("accessToken");
@@ -302,7 +320,11 @@ export const hasExistingUserProfile = (loginResponse) => {
 
 export const saveLoginSession = (loginResponse, { fullName } = {}) => {
   const loginData = loginResponse?.data ?? loginResponse;
-  if (!loginData) return;
+  if (!loginData?.accessToken?.trim?.()) {
+    return false;
+  }
+
+  saveAuthTokens(loginResponse);
 
   const fullNameValue = fullName ?? loginData.fullName ?? "";
 
@@ -313,21 +335,12 @@ export const saveLoginSession = (loginResponse, { fullName } = {}) => {
   localStorage.setItem("fullName", fullNameValue);
   localStorage.setItem("email", loginData.email ?? "");
   localStorage.setItem("mobile", loginData.mobile ?? "");
-  localStorage.setItem("tokenType", loginData.tokenType ?? "");
-  localStorage.setItem("accessToken", loginData.accessToken ?? "");
-  localStorage.setItem("refreshToken", loginData.refreshToken ?? "");
-  localStorage.setItem(
-    "accessTokenExpiresIn",
-    loginData.accessTokenExpiresIn ?? "",
-  );
-  localStorage.setItem(
-    "refreshTokenExpiresIn",
-    loginData.refreshTokenExpiresIn ?? "",
-  );
 
   if (fullNameValue.trim()) {
     markUserProfileCreated();
   }
+
+  return true;
 };
 
 let _createUserProfilePromise = null;

@@ -20,6 +20,11 @@ const getDeviceInfo = () => ({
   ipAddress: "0.0.0.0",
 });
 
+const getUserIdFromPayload = (payload) => {
+  const candidate = payload?.data ?? payload;
+  return candidate?.userId ?? candidate?.id ?? null;
+};
+
 export const saveAuthTokens = (loginResponse) => {
   const loginData = loginResponse?.data ?? loginResponse;
   if (!loginData) return;
@@ -37,7 +42,7 @@ export const saveAuthTokens = (loginResponse) => {
   storeValue("refreshTokenExpiresIn", loginData.refreshTokenExpiresIn);
   storeValue("roles", loginData.roles);
   storeValue("authId", loginData.authId);
-  storeValue("userId", loginData.userId || loginData.authId);
+  storeValue("userId", loginData.userId || loginData.id || null);
   storeValue("fullName", loginData.fullName);
   storeValue("email", loginData.email);
   storeValue("mobile", loginData.mobile);
@@ -331,7 +336,9 @@ export const saveLoginSession = (loginResponse, { fullName } = {}) => {
   localStorage.setItem("isLogin", "true");
   localStorage.setItem("userData", JSON.stringify(loginData));
   localStorage.setItem("authId", loginData.authId ?? "");
-  localStorage.setItem("userId", loginData.userId ?? loginData.authId ?? "");
+  if (loginData.userId || loginData.id) {
+    localStorage.setItem("userId", loginData.userId ?? loginData.id);
+  }
   localStorage.setItem("fullName", fullNameValue);
   localStorage.setItem("email", loginData.email ?? "");
   localStorage.setItem("mobile", loginData.mobile ?? "");
@@ -385,9 +392,33 @@ export const createUserProfile = async ({
       },
     )
     .then((response) => {
+      const responsePayload = response?.data ?? response ?? {};
+      const profileData = responsePayload?.data ?? responsePayload;
+      const createdUserId =
+        getUserIdFromPayload(responsePayload) ??
+        getUserIdFromPayload(profileData);
+
+      console.log("Create user response ID:", createdUserId);
+
+      if (createdUserId) {
+        localStorage.setItem("userId", String(createdUserId));
+
+        const existingUserData = localStorage.getItem("userData");
+        if (existingUserData) {
+          try {
+            const parsedUserData = JSON.parse(existingUserData);
+            const normalizedUserData = parsedUserData?.data ?? parsedUserData;
+            normalizedUserData.userId = String(createdUserId);
+            localStorage.setItem("userData", JSON.stringify(parsedUserData));
+          } catch {
+            // ignore malformed stored user data
+          }
+        }
+      }
+
       markUserProfileCreated();
       localStorage.setItem("accountStatus", "KYC PENDING");
-      return response.data;
+      return profileData;
     })
     .catch((error) => {
       if (error?.response?.status === 409) {

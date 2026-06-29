@@ -3,8 +3,8 @@ import { FaLock, FaEye, FaEyeSlash, FaSpinner } from 'react-icons/fa';
 import {
   registerUser,
   loginWithPassword,
-  saveAuthTokens,
-} from '../../../services/authApi';
+  saveLoginSession,
+} from "../../../services/authApi";
 import styles from './Signup.module.css';
 
 const getStrength = (pass) => {
@@ -48,9 +48,13 @@ const Step3Register = ({ onBack, onSuccess, formData, setFormData }) => {
         email: formData.email,
         password: formData.password,
       });
-      saveAuthTokens(loginData);
-      localStorage.setItem('isLogin', 'true');
-      localStorage.setItem('userData', JSON.stringify(loginData));
+
+      const sessionSaved = saveLoginSession(loginData);
+      if (!sessionSaved) {
+        setError('Login succeeded but no access token was returned. Please sign in manually.');
+        return;
+      }
+
       onSuccess(loginData);
     } catch (err) {
       setError(err?.response?.data?.message || 'Registration failed. Please try again.');

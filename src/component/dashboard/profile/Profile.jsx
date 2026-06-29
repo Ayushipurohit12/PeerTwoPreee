@@ -83,11 +83,7 @@ const Profile = () => {
       storedUser.fullName || localStorage.getItem("fullName") || "User";
     const email = storedUser.email || localStorage.getItem("email") || "";
     const mobile = storedUser.mobile || localStorage.getItem("mobile") || "";
-    const userId =
-      storedUser.userId ||
-      localStorage.getItem("userId") ||
-      localStorage.getItem("authId") ||
-      "";
+    const userId = storedUser.Id || localStorage.getItem("userId") || "";
     const status = localStorage.getItem("accountStatus") || "KYC PENDING";
 
     setUserInfo({ fullName, email, mobile, userId, status });
@@ -99,6 +95,16 @@ const Profile = () => {
 
   const handleAdharSubmit = async (e) => {
     e.preventDefault();
+
+    if (isKycVerified(userInfo.status)) {
+      setAdharOtpStatus({
+        success: false,
+        message: "KYC verification has already been completed.",
+      });
+      setShowAdharModal(false);
+      setShowOtpVerification(false);
+      return;
+    }
 
     const cleanedAdhar = adharNumber.replace(/\D/g, "");
 
@@ -153,14 +159,32 @@ const Profile = () => {
         message: response?.message || "Aadhar verified successfully",
       });
 
-      const verifyData = response?.data || {};
-      if (userInfo.userId && Object.keys(verifyData).length > 0) {
+      const verifyData = response ?? {};
+      const resolvedUserId = [
+        verifyData?.userId,
+        verifyData?.id,
+        response?.userId,
+        response?.id,
+        userInfo.userId,
+        localStorage.getItem("userId"),
+      ].find(Boolean);
+
+      if (resolvedUserId) {
         const profilePayload = {
-          userId: userInfo.userId,
+          userId: String(resolvedUserId),
+          userid: String(resolvedUserId),
           ...verifyData,
         };
 
-        await updateUserProfile(userInfo.userId, profilePayload);
+        console.log(
+          `Sending profile update for /api/v1/users/${resolvedUserId}/profile`,
+          profilePayload,
+        );
+
+        localStorage.setItem("userId", String(resolvedUserId));
+        setUserInfo((prev) => ({ ...prev, userId: String(resolvedUserId) }));
+
+        await updateUserProfile(String(resolvedUserId), profilePayload);
       }
 
       localStorage.setItem("accountStatus", "KYC VERIFIED");
@@ -361,7 +385,9 @@ const Profile = () => {
             </button>
 
             <div className="profile-info">
-              <h2 className="profile-name">{userInfo.fullName.toUpperCase()}</h2>
+              <h2 className="profile-name">
+                {userInfo.fullName.toUpperCase()}
+              </h2>
               <p className="profile-user-id">
                 USER ID · {userInfo.userId || "—"}
               </p>
@@ -370,7 +396,9 @@ const Profile = () => {
                 className={`profile-kyc-badge${
                   isKycVerified(userInfo.status) ? "" : " pending"
                 }`}
-                onClick={() => !isKycVerified(userInfo.status) && setShowAdharModal(true)}
+                onClick={() =>
+                  !isKycVerified(userInfo.status) && setShowAdharModal(true)
+                }
                 title={
                   isKycVerified(userInfo.status)
                     ? userInfo.status
@@ -554,7 +582,11 @@ const Profile = () => {
             </div>
           </section>
 
-          <button type="button" className="profile-logout-card" onClick={handleLogout}>
+          <button
+            type="button"
+            className="profile-logout-card"
+            onClick={handleLogout}
+          >
             <LogOut size={18} strokeWidth={2} />
             Log Out
           </button>

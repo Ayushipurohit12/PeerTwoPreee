@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { Outlet, NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect, useMemo, useState } from "react";
+import { Outlet, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   LayoutGrid,
   Package,
@@ -7,10 +7,15 @@ import {
   LineChart,
   MessageCircle,
   User,
+  Menu,
+  X,
 } from "lucide-react";
 import logo from "../../assets/l-logo.png";
 import FullNamePopup from "../PUBLICC/shared/FullNamePopup";
-import { hasExistingUserProfile } from "../../services/authApi";
+import {
+  clearInvalidAuthState,
+  hasExistingUserProfile,
+} from "../../services/authApi";
 import "../dashboard/home/DashboardHome.css";
 
 const navItems = [
@@ -23,6 +28,7 @@ const navItems = [
 
 const DashboardLayout = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const fullName = localStorage.getItem("fullName") || "User";
   const storedUserData = useMemo(() => {
     try {
@@ -36,6 +42,24 @@ const DashboardLayout = () => {
   const [showProfileSetup, setShowProfileSetup] = useState(
     () => !hasExistingUserProfile(storedUserData),
   );
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    if (!clearInvalidAuthState()) {
+      navigate("/login", { replace: true });
+    }
+  }, [navigate]);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   const getInitials = (name) =>
     name
@@ -82,8 +106,57 @@ const DashboardLayout = () => {
             >
               {getInitials(fullName) || <User size={18} color="#8a96a3" />}
             </button>
+            <button
+              type="button"
+              className="topbar-menu-toggle"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? <X size={24} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
+            </button>
           </div>
         </div>
+
+        <div
+          className={`topbar-mobile-overlay${menuOpen ? " open" : ""}`}
+          onClick={() => setMenuOpen(false)}
+          aria-hidden={!menuOpen}
+        />
+
+        <nav
+          className={`topbar-mobile-menu${menuOpen ? " open" : ""}`}
+          aria-label="Mobile dashboard navigation"
+        >
+          <div className="topbar-mobile-menu-head">
+            <span className="topbar-mobile-menu-title">Menu</span>
+            <button
+              type="button"
+              className="topbar-mobile-close"
+              aria-label="Close menu"
+              onClick={() => setMenuOpen(false)}
+            >
+              <X size={22} strokeWidth={2} />
+            </button>
+          </div>
+
+          {navItems.map(({ to, end, label, Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              className={({ isActive }) =>
+                isActive ? "topbar-mobile-item active" : "topbar-mobile-item"
+              }
+              onClick={() => setMenuOpen(false)}
+            >
+              <span className="topbar-mobile-item-icon">
+                <Icon size={20} strokeWidth={1.8} />
+              </span>
+              <span className="topbar-mobile-item-label">{label}</span>
+            </NavLink>
+          ))}
+        </nav>
       </header>
 
       <Outlet />

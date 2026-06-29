@@ -181,16 +181,29 @@ function WhyLendBenefits2() {
             slidesPerView={1.6}
             breakpoints={{
               0: {
-                slidesPerView: 1.2,
+                slidesPerView: 1.1,
+                centeredSlides: true,
+                spaceBetween: 16,
               },
               576: {
-                slidesPerView: 1.4,
+                slidesPerView: 1.3,
+                centeredSlides: true,
+                spaceBetween: 18,
               },
               768: {
+                slidesPerView: 2,
+                centeredSlides: false,
+                spaceBetween: 20,
+              },
+              992: {
                 slidesPerView: 1.5,
+                centeredSlides: false,
+                spaceBetween: 20,
               },
               1200: {
                 slidesPerView: 1.7,
+                centeredSlides: false,
+                spaceBetween: 20,
               },
             }}
             className="knowGrowSwiper"

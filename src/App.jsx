@@ -40,18 +40,12 @@ import Orders from "./component/dashboard/orders/Orders";
 import LiveLoans from "./component/dashboard/live/LiveLoans";
 import PortfolioDashboard from "./component/dashboard/portfolio/PortfolioDashboard";
 import Account from "./component/dashboard/account/Account";
+import ProtectedRoute from "./component/auth/ProtectedRoute";
 // import LenDenClub from "./component/dashboard/home/DashboardHome";
 
 /* =========================
    PROTECTED ROUTE
 ========================= */
-
-const ProtectedRoute = ({ children }) => {
-  const isLogin = localStorage.getItem("isLogin") === "true";
-  const accessToken = localStorage.getItem("accessToken");
-
-  return isLogin && accessToken ? children : <Navigate to="/login" replace />;
-};
 
 function App() {
   return (

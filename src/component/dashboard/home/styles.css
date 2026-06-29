@@ -1159,7 +1159,7 @@
   pointer-events: none;
 }
 
-.footer-links {
+.main-footer .footer-links {
   font-size: 13px;
   display: flex;
   flex-direction: row;
@@ -1171,12 +1171,12 @@
   white-space: nowrap;
 }
 
-.footer-links a {
+.main-footer .footer-links a {
   color: #ffffff;
   white-space: nowrap;
 }
 
-.footer-links a:hover {
+.main-footer .footer-links a:hover {
   opacity: 0.85;
 }
 
@@ -1582,7 +1582,7 @@
     order: 1;
   }
 
-  .footer-links {
+  .main-footer .footer-links {
     order: 3;
     justify-content: center;
     flex-wrap: wrap;

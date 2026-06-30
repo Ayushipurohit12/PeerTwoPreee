@@ -83,7 +83,11 @@ const Profile = () => {
       storedUser.fullName || localStorage.getItem("fullName") || "User";
     const email = storedUser.email || localStorage.getItem("email") || "";
     const mobile = storedUser.mobile || localStorage.getItem("mobile") || "";
-    const userId = storedUser.Id || localStorage.getItem("userId") || "";
+    const userId =
+      storedUser.userId ||
+      storedUser.id ||
+      localStorage.getItem("userId") ||
+      "";
     const status = localStorage.getItem("accountStatus") || "KYC PENDING";
 
     setUserInfo({ fullName, email, mobile, userId, status });

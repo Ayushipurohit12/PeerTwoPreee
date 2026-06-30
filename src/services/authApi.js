@@ -25,6 +25,82 @@ const getUserIdFromPayload = (payload) => {
   return candidate?.userId ?? candidate?.id ?? null;
 };
 
+const USER_PROFILES_KEY = "userProfiles";
+
+const readUserProfiles = () => {
+  try {
+    const raw = localStorage.getItem(USER_PROFILES_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+};
+
+const writeUserProfiles = (profiles) => {
+  localStorage.setItem(USER_PROFILES_KEY, JSON.stringify(profiles));
+};
+
+const getProfileLookupKeys = ({ email, mobile, authId }) =>
+  [
+    authId ? `auth:${authId}` : null,
+    email ? `email:${String(email).trim().toLowerCase()}` : null,
+    mobile ? `mobile:${String(mobile).trim()}` : null,
+  ].filter(Boolean);
+
+export const savePersistedUserProfile = ({
+  userId,
+  fullName,
+  email,
+  mobile,
+  authId,
+}) => {
+  if (!userId) return;
+
+  const profile = {
+    userId: String(userId),
+    fullName: fullName?.trim() || "",
+    email: email?.trim() || "",
+    mobile: mobile?.trim() || "",
+    authId: authId ?? "",
+  };
+
+  const profiles = readUserProfiles();
+  getProfileLookupKeys(profile).forEach((key) => {
+    profiles[key] = profile;
+  });
+  writeUserProfiles(profiles);
+};
+
+export const getPersistedUserProfile = ({ email, mobile, authId } = {}) => {
+  const profiles = readUserProfiles();
+  const keys = getProfileLookupKeys({ email, mobile, authId });
+
+  for (const key of keys) {
+    if (profiles[key]) {
+      return profiles[key];
+    }
+  }
+
+  return null;
+};
+
+const applyPersistedProfileToSession = (loginData, persistedProfile) => {
+  if (!persistedProfile) return loginData;
+
+  const merged = { ...loginData };
+  if (persistedProfile.userId) {
+    merged.userId = persistedProfile.userId;
+  }
+  if (persistedProfile.fullName?.trim()) {
+    merged.fullName = persistedProfile.fullName;
+  }
+
+  localStorage.setItem("userId", persistedProfile.userId);
+  localStorage.setItem("fullName", persistedProfile.fullName || "");
+
+  return merged;
+};
+
 export const saveAuthTokens = (loginResponse) => {
   const loginData = loginResponse?.data ?? loginResponse;
   if (!loginData) return;
@@ -315,9 +391,15 @@ export const hasExistingUserProfile = (loginResponse) => {
   const loginData = loginResponse?.data ?? loginResponse;
   const storedFullName = localStorage.getItem("fullName") || "";
   const responseFullName = loginData?.fullName || "";
+  const persistedProfile = getPersistedUserProfile({
+    email: loginData?.email,
+    mobile: loginData?.mobile,
+    authId: loginData?.authId,
+  });
 
   return (
     isUserProfileCreated() ||
+    Boolean(persistedProfile?.userId && persistedProfile?.fullName?.trim()) ||
     Boolean(responseFullName.trim()) ||
     Boolean(storedFullName.trim())
   );
@@ -329,21 +411,43 @@ export const saveLoginSession = (loginResponse, { fullName } = {}) => {
     return false;
   }
 
-  saveAuthTokens(loginResponse);
+  const persistedProfile = getPersistedUserProfile({
+    email: loginData.email,
+    mobile: loginData.mobile,
+    authId: loginData.authId,
+  });
 
-  const fullNameValue = fullName ?? loginData.fullName ?? "";
+  const mergedLoginData = applyPersistedProfileToSession(
+    loginData,
+    persistedProfile,
+  );
+
+  saveAuthTokens({ ...loginResponse, data: mergedLoginData });
+
+  const userId =
+    mergedLoginData.userId ||
+    mergedLoginData.id ||
+    persistedProfile?.userId ||
+    null;
+  const fullNameValue =
+    fullName ??
+    mergedLoginData.fullName ??
+    persistedProfile?.fullName ??
+    "";
 
   localStorage.setItem("isLogin", "true");
-  localStorage.setItem("userData", JSON.stringify(loginData));
-  localStorage.setItem("authId", loginData.authId ?? "");
-  if (loginData.userId || loginData.id) {
-    localStorage.setItem("userId", loginData.userId ?? loginData.id);
+  localStorage.setItem("userData", JSON.stringify(mergedLoginData));
+  localStorage.setItem("authId", mergedLoginData.authId ?? "");
+  if (userId) {
+    localStorage.setItem("userId", String(userId));
+    mergedLoginData.userId = String(userId);
+    localStorage.setItem("userData", JSON.stringify(mergedLoginData));
   }
   localStorage.setItem("fullName", fullNameValue);
-  localStorage.setItem("email", loginData.email ?? "");
-  localStorage.setItem("mobile", loginData.mobile ?? "");
+  localStorage.setItem("email", mergedLoginData.email ?? "");
+  localStorage.setItem("mobile", mergedLoginData.mobile ?? "");
 
-  if (fullNameValue.trim()) {
+  if (fullNameValue.trim() || persistedProfile?.userId) {
     markUserProfileCreated();
   }
 
@@ -364,6 +468,14 @@ export const createUserProfile = async ({
   ipAddress = "192.168.1.100",
   actionBy = "SYSTEM",
 }) => {
+  const persistedProfile = getPersistedUserProfile({ email, mobile, authId });
+  if (persistedProfile?.userId) {
+    localStorage.setItem("userId", persistedProfile.userId);
+    localStorage.setItem("fullName", persistedProfile.fullName || fullName || "");
+    markUserProfileCreated();
+    return { alreadyCreated: true, ...persistedProfile };
+  }
+
   if (isUserProfileCreated()) {
     return { alreadyCreated: true };
   }
@@ -401,7 +513,16 @@ export const createUserProfile = async ({
       console.log("Create user response ID:", createdUserId);
 
       if (createdUserId) {
+        savePersistedUserProfile({
+          userId: createdUserId,
+          fullName,
+          email,
+          mobile,
+          authId,
+        });
+
         localStorage.setItem("userId", String(createdUserId));
+        localStorage.setItem("fullName", fullName?.trim() || "");
 
         const existingUserData = localStorage.getItem("userData");
         if (existingUserData) {
@@ -409,6 +530,7 @@ export const createUserProfile = async ({
             const parsedUserData = JSON.parse(existingUserData);
             const normalizedUserData = parsedUserData?.data ?? parsedUserData;
             normalizedUserData.userId = String(createdUserId);
+            normalizedUserData.fullName = fullName?.trim() || "";
             localStorage.setItem("userData", JSON.stringify(parsedUserData));
           } catch {
             // ignore malformed stored user data
@@ -423,6 +545,13 @@ export const createUserProfile = async ({
     .catch((error) => {
       if (error?.response?.status === 409) {
         markUserProfileCreated();
+        savePersistedUserProfile({
+          userId: getUserIdFromPayload(error?.response?.data),
+          fullName,
+          email,
+          mobile,
+          authId,
+        });
         return {
           alreadyCreated: true,
           message:

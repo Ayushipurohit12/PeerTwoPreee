@@ -695,6 +695,48 @@
   }
 }
 
+@media (max-width: 420px) {
+  .page {
+    padding: 1rem 8px;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .container {
+    max-width: 100%;
+    width: 100%;
+    gap: 1rem;
+    padding: 0;
+  }
+
+  .left {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .heading {
+    font-size: 1.6rem;
+  }
+
+  /* Make store buttons narrower and fit two per row */
+  .storeButtons {
+    gap: 8px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .storeBtn {
+    min-width: 120px;
+    width: 48%;
+    padding: 10px 12px;
+  }
+}
+
 @media (max-width: 600px) {
   .otpRow {
     gap: 6px;

@@ -2,23 +2,23 @@
    SECTION
 ========================================== */
 
-.lendControl-section{
-  width:100%;
-  background:var(--color-bg-white);
-  padding:60px 0 70px;
-  overflow:hidden;
+.lendControl-section {
+  width: 100%;
+  background: var(--color-bg-white);
+  padding: 60px 0 70px;
+  overflow: hidden;
 }
 
-.lendControl-container{
-  width:100%;
-  max-width:1450px;
-  margin:auto;
+.lendControl-container {
+  width: 100%;
+  max-width: 1450px;
+  margin: auto;
 
-  padding:0 80px;
+  padding: 0 80px;
 
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   /* gap:90px; */
 }
 
@@ -26,150 +26,187 @@
    LEFT
 ========================================== */
 
-.lendControl-left{
-  flex:1;
-  display:flex;
-  justify-content:center;
+.lendControl-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
-.lendControl-image{
-  width:75%;
-  max-width:600px;
-  object-fit:contain;
+.lendControl-image {
+  width: 75%;
+  max-width: 600px;
+  object-fit: contain;
 }
 
 /* ==========================================
    RIGHT
 ========================================== */
 
-.lendControl-right{
-  flex:1;
-  max-width:600px;
+.lendControl-right {
+  flex: 1;
+  max-width: 600px;
 }
 
-.lendControl-right h2{
-  font-size:53px;
-  line-height:1.1;
-  font-weight:500;
-  color:var(--color-text-dark);
-  margin-bottom:35px;
+.lendControl-right h2 {
+  font-size: 53px;
+  line-height: 1.1;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  margin-bottom: 35px;
 }
 
-.lendControl-right p{
-  font-size:18px;
-  line-height:1.8;
-  color:var(--color-text-body);
-  margin-bottom:40px;
+.lendControl-right p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--color-text-body);
+  margin-bottom: 40px;
 }
 
-.lendControl-btn{
-  border:none;
-  cursor:pointer;
+.lendControl-btn {
+  border: none;
+  cursor: pointer;
 
-  min-width:160px;
-  height:52px;
+  min-width: 160px;
+  height: 52px;
 
-  border-radius:60px;
+  border-radius: 60px;
 
-  font-size:17px;
-  font-weight:600;
-  color:white;
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
 
-  background:linear-gradient(
+  background: linear-gradient(
     135deg,
     var(--color-accent),
     var(--color-primary)
   );
 
-  transition:.35s ease;
+  transition: 0.35s ease;
 }
 
-.lendControl-btn:hover{
-  transform:translateY(-4px);
+.lendControl-btn:hover {
+  transform: translateY(-4px);
 }
 
 /* ==========================================
    FEATURES
 ========================================== */
 
-.lendControl-features{
-  width:100%;
-  max-width:1450px;
+.lendControl-features {
+  width: 100%;
+  max-width: 1200px;
 
-  margin:70px auto 0px 130px;
-  padding:0 70px;
+  margin: 70px auto 0;
+  padding: 0 40px;
 
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
 }
 
-.lendControl-feature{
-  flex:1;
+.lendControl-feature {
+  flex: 1 1 280px;
+  min-width: 240px;
 
-  font-size:18px;
-  color:var(--color-text-dark);
+  font-size: 18px;
+  color: var(--color-text-dark);
 
-  display:flex;
-  align-items:center;
-  /* gap:12px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.lendControl-feature strong{
-  font-weight:700;
+.lendControl-feature strong {
+  font-weight: 700;
 }
 
 /* ==========================================
    LAPTOP
 ========================================== */
 
-@media(max-width:1200px){
-
-  .lendControl-right h2{
-    font-size:52px;
+@media (max-width: 1200px) {
+  .lendControl-right h2 {
+    font-size: 52px;
   }
 
-  .lendControl-feature{
-    font-size:22px;
+  .lendControl-feature {
+    font-size: 22px;
   }
 }
+
+/* @media (max-width: 1100px) {
+  .lendControl-container {
+    padding: 0 30px;
+    justify-content: center;
+  }
+  .lendControl-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 30px;
+    gap: 50px;
+  }
+
+  .lendControl-features {
+    width: 100%;
+    max-width: 1024px;
+    margin: 70px auto 0;
+    padding: 0 30px;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .lendControl-feature {
+    flex: 1 1 280px;
+    min-width: 240px;
+    justify-content: center;
+    text-align: center;
+  }
+} */
 
 /* ==========================================
    TABLET
 ========================================== */
 
-@media(max-width:992px){
-
-  .lendControl-container{
-    flex-direction:column;
-    text-align:center;
-    padding:0 30px;
-    gap:50px;
+@media (max-width:1200px) {
+  .lendControl-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 30px;
+    gap: 50px;
   }
 
-  .lendControl-right{
-    max-width:100%;
+  .lendControl-right {
+    max-width: 100%;
   }
 
-  .lendControl-right h2{
-    font-size:44px;
+  .lendControl-right h2 {
+    font-size: 44px;
   }
 
-  .lendControl-right p{
-    font-size:18px;
+  .lendControl-right p {
+    font-size: 18px;
   }
 
-  .lendControl-features{
-    flex-direction:column;
-    align-items:center;
-    padding:0 30px;
-    gap:22px;
+  .lendControl-features {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 30px;
+    gap: 18px;
+    width: 100%;
+    max-width: 760px;
+    margin: 40px auto 0;
   }
 
-  .lendControl-feature{
-    justify-content:center;
-    text-align:center;
+  .lendControl-feature {
+    justify-content: center;
+    text-align: center;
+    flex: 0;
+    width: 100%;
   }
 }
 
@@ -177,37 +214,49 @@
    MOBILE
 ========================================== */
 
-@media(max-width:768px){
-
-  .lendControl-section{
-    padding:60px 0;
+@media (max-width: 768px) {
+  .lendControl-section {
+    padding: 60px 0;
   }
 
-  .lendControl-container{
-    padding:0 20px;
+  .lendControl-container {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .lendControl-right h2{
-    font-size:34px;
+  .lendControl-right h2 {
+    font-size: 34px;
   }
 
-  .lendControl-right p{
-    font-size:16px;
+  .lendControl-right p {
+    font-size: 16px;
   }
 
-  .lendControl-btn{
-    width:100%;
-    max-width:280px;
-    height:58px;
-    font-size:18px;
+  .lendControl-btn {
+    width: 100%;
+    max-width: 280px;
+    height: 58px;
+    font-size: 18px;
+    margin: 0 auto;
   }
 
-  .lendControl-features{
-    padding:0 20px;
+  .lendControl-features {
+    padding: 0 20px;
+    justify-content: center;
+    width: 100%;
+    max-width: 660px;
+    margin: 0 auto;
   }
 
-  .lendControl-feature{
-    font-size:18px;
+  .lendControl-feature {
+    font-size: 18px;
+    justify-content: center;
+    text-align: center;
+    flex: 0;
+    width: 100%;
   }
 }
 
@@ -215,148 +264,143 @@
    SMALL MOBILE
 ========================================== */
 
-@media(max-width:480px){
-
-  .lendControl-right h2{
-    font-size:28px;
+@media (max-width: 480px) {
+  .lendControl-right h2 {
+    font-size: 28px;
   }
 
-  .lendControl-right p{
-    font-size:15px;
+  .lendControl-right p {
+    font-size: 15px;
   }
 
-  .lendControl-feature{
-    font-size:16px;
+  .lendControl-feature {
+    font-size: 16px;
   }
 }
-
-
 
 /* ==========================================
    MANUAL LENDING SECTION
 ========================================== */
 
-.manualLending-section{
-  width:100%;
-  background:var(--color-bg-white);
-  padding:50px 0;
+.manualLending-section {
+  width: 100%;
+  background: var(--color-bg-white);
+  padding: 50px 0;
 }
 
-.manualLending-header{
-  max-width:1200px;
-  margin:auto;
-  text-align:center;
-  padding:0 20px;
+.manualLending-header {
+  max-width: 1200px;
+  margin: auto;
+  text-align: center;
+  padding: 0 20px;
 }
 
-.manualLending-header h2{
-  font-size:45px;
-  font-weight:500;
-  color:var(--color-text-dark);
-  margin-bottom:30px;
+.manualLending-header h2 {
+  font-size: 45px;
+  font-weight: 500;
+  color: var(--color-text-dark);
+  margin-bottom: 30px;
 }
 
-.manualLending-header p{
-  font-size:19px;
- 
-  line-height:1.7;
-  font-weight:500;
-  color:var(--color-text-body);
+.manualLending-header p {
+  font-size: 19px;
+
+  line-height: 1.7;
+  font-weight: 500;
+  color: var(--color-text-body);
 }
 
 /* ==========================================
    GRID
 ========================================== */
 
-.manualLending-grid{
-  max-width:1350px;
-  margin:70px auto 0;
+.manualLending-grid {
+  max-width: 1350px;
+  margin: 70px auto 0;
 
-  padding:0 80px;
+  padding: 0 80px;
 
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:35px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
 }
 
 /* ==========================================
    CARD
 ========================================== */
 
-.manualLending-card{
-  background:#fff;
+.manualLending-card {
+  background: #fff;
 
-  border:1px solid #e5e7eb;
+  border: 1px solid #e5e7eb;
 
-  border-radius:35px;
+  border-radius: 35px;
 
-  padding:60px 22px;
+  padding: 60px 22px;
 
-  text-align:center;
+  text-align: center;
 
-  transition:.4s ease;
+  transition: 0.4s ease;
 
-  box-shadow:
-  0 8px 25px rgba(0,0,0,.04);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
 }
 
-.manualLending-icon{
-  width:100px;
-  height:100px;
+.manualLending-icon {
+  width: 100px;
+  height: 100px;
 
-  margin:0 auto 35px;
+  margin: 0 auto 35px;
 
-  border-radius:50%;
+  border-radius: 50%;
 
-  background:#c8ef1f;
+  background: #c8ef1f;
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.4s ease;
 
-  font-size:50px;
-  color:white;
+  font-size: 50px;
+  color: white;
 }
-.manualLending-card:hover{
-  .manualLending-icon{
-    background:var(--color-primary);
+.manualLending-card:hover {
+  .manualLending-icon {
+    background: var(--color-primary);
   }
 }
 
-.manualLending-card h3{
-  font-size:24px;
-  font-family:Georgia, 'Times New Roman', Times, serif;
-  font-weight:500;
-  color:var(--color-text-dark);
+.manualLending-card h3 {
+  font-size: 24px;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-weight: 500;
+  color: var(--color-text-dark);
 
-  margin-bottom:12px;
+  margin-bottom: 12px;
 }
 
-.manualLending-card p{
-  font-size:17px;
-  line-height:2;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
-  color:var(--color-text-body);
+.manualLending-card p {
+  font-size: 17px;
+  line-height: 2;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: var(--color-text-body);
 }
 
 /* ==========================================
    TABLET
 ========================================== */
 
-@media(max-width:992px){
-
-  .manualLending-header h2{
-    font-size:48px;
+@media (max-width: 992px) {
+  .manualLending-header h2 {
+    font-size: 48px;
   }
 
-  .manualLending-header p{
-    font-size:18px;
+  .manualLending-header p {
+    font-size: 18px;
   }
 
-  .manualLending-grid{
-    grid-template-columns:1fr;
-    padding:0 30px;
+  .manualLending-grid {
+    grid-template-columns: 1fr;
+    padding: 0 30px;
   }
 }
 
@@ -364,45 +408,44 @@
    MOBILE
 ========================================== */
 
-@media(max-width:768px){
-
-  .manualLending-section{
-    padding:80px 0;
+@media (max-width: 768px) {
+  .manualLending-section {
+    padding: 80px 0;
   }
 
-  .manualLending-header h2{
-    font-size:34px;
+  .manualLending-header h2 {
+    font-size: 34px;
   }
 
-  .manualLending-header p{
-    font-size:15px;
-    line-height:1.8;
+  .manualLending-header p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 
-  .manualLending-grid{
-    margin-top:50px;
-    padding:0 20px;
-    gap:25px;
+  .manualLending-grid {
+    margin-top: 50px;
+    padding: 0 20px;
+    gap: 25px;
   }
 
-  .manualLending-card{
-    padding:35px 25px;
-    border-radius:24px;
+  .manualLending-card {
+    padding: 35px 25px;
+    border-radius: 24px;
   }
 
-  .manualLending-icon{
-    width:90px;
-    height:90px;
-    font-size:35px;
-    margin-bottom:20px;
+  .manualLending-icon {
+    width: 90px;
+    height: 90px;
+    font-size: 35px;
+    margin-bottom: 20px;
   }
 
-  .manualLending-card h3{
-    font-size:22px;
+  .manualLending-card h3 {
+    font-size: 22px;
   }
 
-  .manualLending-card p{
-    font-size:15px;
-    line-height:1.8;
+  .manualLending-card p {
+    font-size: 15px;
+    line-height: 1.8;
   }
 }

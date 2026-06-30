@@ -1,11 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 
 /* ── CSS VARIABLES ───────────────────────────────────────────── */
 
 :root {
-
-  
   /* ── PRIMARY BRAND BLUE (buttons, navbar signup, footer bg) */
   --color-primary: #1f5f99;
   --color-primary-dark: #174e84;
@@ -39,5 +36,11 @@
   /* ── GREEN (stats icons, check marks) */
   --color-green: #78ad42;
   --color-green-dark: #73a53d;
+}
 
+/* Ensure no default browser spacing hides the top navbar */
+html,
+body {
+  margin: 0;
+  padding: 0;
 }

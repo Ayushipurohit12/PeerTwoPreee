@@ -47,11 +47,13 @@
 
 .loan-grid {
   width: 100%;
-  max-width: 1380px;
-  margin: auto;
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, minmax(380px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px 36px;
+  align-items: start;
+  padding: 0 12px;
 }
 
 /* =========================================
@@ -62,20 +64,24 @@
   width: 100%;
   min-width: 0;
   height: auto;
-  background: var(--color-bg-white);
-  border-radius: 12px;
+  background: #ffffff;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid var(--color-border);
+  border: none;
   cursor: pointer;
-  transition: 0.35s ease;
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
   position: relative;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 6px 18px rgba(14, 30, 37, 0.06);
+  min-height: 140px;
 }
 
 .diversify-section .loan-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transform: translateY(-6px);
+  box-shadow: 0 14px 36px rgba(10, 28, 44, 0.1);
 }
 
 /* =========================================
@@ -84,14 +90,16 @@
 
 .diversify-section .loan-top {
   background: linear-gradient(180deg, var(--color-primary) 0%, #2c6cab 100%);
-  padding: 20px 22px;
+  padding: 18px 22px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 16px;
+  gap: 12px;
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  border-radius: 12px 12px 0 0;
+  min-height: 86px;
 }
 
 .loan-top::before {
@@ -149,13 +157,14 @@
 ========================================= */
 
 .diversify-section .loan-bottom {
-  background: var(--color-bg-light);
-  padding: 16px 22px;
+  background: #ffffff;
+  padding: 14px 18px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  align-items: start;
+  gap: 12px;
+  align-items: center;
   flex: 1;
+  border-top: 1px solid rgba(14, 30, 37, 0.04);
 }
 
 .diversify-section .loan-bottom > div {
@@ -163,17 +172,16 @@
 }
 
 .diversify-section .loan-bottom p {
-  font-size: 11px;
-  color: #888;
-  margin-bottom: 4px;
-  white-space: nowrap;
+  font-size: 12px;
+  color: #8a8f95;
+  margin: 0 0 6px 0;
 }
 
 .diversify-section .loan-bottom h5 {
   font-size: 15px;
-  color: #444;
+  color: #263238;
   font-weight: 700;
-  white-space: nowrap;
+  margin: 0;
 }
 
 /* =========================================
